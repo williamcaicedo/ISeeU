@@ -1,1 +1,3 @@
-include iseeu/models/*.hdf5
+include license.txt
+include README.md
+include iseeu/models/kfold4_best.hdf5

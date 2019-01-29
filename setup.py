@@ -26,7 +26,6 @@ setup(
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Researchers',
         'License :: OSI Approved :: MIT License',
     ],
     zip_safe=False

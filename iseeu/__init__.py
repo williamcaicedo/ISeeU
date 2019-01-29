@@ -1,1 +1,1 @@
-from ISeeU.iseeu import ISeeU
+from iseeu.iseeu import ISeeU
