@@ -10,6 +10,8 @@ from deeplift.layers import NonlinearMxtsMode
 from deeplift.conversion import kerasapi_conversion as kc
 from deeplift.util import compile_func
 
+import pkg_resources
+
 
 class ISeeU:
     __version__ = "0.1"
@@ -69,11 +71,15 @@ class ISeeU:
 
     def __init__(self):
         plt.style.use('ggplot')
-
-        self._model = load_model(f"models/kfold{4}_best.hdf5")
+        try:
+            self._model = load_model("models/kfold4_best.hdf5")
+        except OSError:
+            
+            model_file = pkg_resources.resource_filename('iseeu', 'models/kfold4_best.hdf5')
+            self._model = load_model(model_file)
 
         dm = kc.convert_model_from_saved_files(
-            h5_file=f"models/kfold{4}_best.hdf5",
+            h5_file="models/kfold4_best.hdf5",
             nonlinear_mxts_mode=NonlinearMxtsMode.RevealCancel, verbose=False)
         self._deeplift_model = dm
         input_layer_name = self._deeplift_model.get_input_layer_names()[0]

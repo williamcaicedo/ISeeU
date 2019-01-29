@@ -10,7 +10,7 @@ setup(
     include_package_data=True,
     name='iseeu',
     packages=['iseeu'],
-    version='0.1',
+    version='0.1.1',
     license='MIT',
     description='ISeeU: Visually interpretable deep learning for mortality prediction inside the ICU',
     long_description=readme(),
@@ -23,6 +23,7 @@ setup(
         'keras>=2.2.4',
         'deeplift>=0.6.6.2',
         'matplotlib>=2.0.2',
+        'tensorflow>=1.9.0'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
