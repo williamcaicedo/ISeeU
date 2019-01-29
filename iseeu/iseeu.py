@@ -14,7 +14,7 @@ import pkg_resources
 
 
 class ISeeU:
-    __version__ = "0.1"
+    __version__ = "0.1.2"
 
     _predictor_names = ['AGE', 'AIDS', 'BICARBONATE', 'BILIRRUBIN', 'BUN',
                         'DIASTOLIC BP', 'ELECTIVE', 'Fi02', 'GCSEyes', 'GCSMotor', 'GCSVerbal',
@@ -70,16 +70,12 @@ class ISeeU:
     _palette = plt.get_cmap('tab10')
 
     def __init__(self):
-        plt.style.use('ggplot')
-        try:
-            self._model = load_model("models/kfold4_best.hdf5")
-        except OSError:
-            
-            model_file = pkg_resources.resource_filename('iseeu', 'models/kfold4_best.hdf5')
-            self._model = load_model(model_file)
+        model_file = pkg_resources.resource_filename('iseeu', 'models/kfold4_best.hdf5')
+        print(f"****{model_file}*****")
+        self._model = load_model(model_file)
 
         dm = kc.convert_model_from_saved_files(
-            h5_file="models/kfold4_best.hdf5",
+            h5_file=model_file,
             nonlinear_mxts_mode=NonlinearMxtsMode.RevealCancel, verbose=False)
         self._deeplift_model = dm
         input_layer_name = self._deeplift_model.get_input_layer_names()[0]
